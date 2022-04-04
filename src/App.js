@@ -35,10 +35,16 @@ function App() {
   })
 
 
+  const[priority, setPriority] = useState('');
+   
+
+
+
   return (
+    <>
     <div className="App">
 
-    <h1>My Todo list</h1>
+    <h1>Todo or not to do list</h1>
     <hr></hr>
 
     <ul>
@@ -46,12 +52,14 @@ function App() {
     </ul>
 
     <form onSubmit={saveNewTask}>
-    <label htmlFor='new-task'>What else to do:</label>
+    <label htmlFor='new-task'></label>
     <input id='new-task' type = 'text' value={newTask} onChange={handleTaskInput}/>
     <input type='submit' value='Save-new-task'/>
+    <input type="radio" name='priority' value='High' onChange={e=>setPriority(e.target.value)}/>High
+    <input type="radio" name='priority' value='Low'  onChange={e=>setPriority(e.target.value)}/>Low
     </form>
     </div>
-
+</>
 
   );
 }
