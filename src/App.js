@@ -45,10 +45,11 @@ function App() {
       {taskNodes}
     </ul>
 
-    <form onSubmit={saveNewTask}/>
+    <form onSubmit={saveNewTask}>
     <label htmlFor='new-task'>What else to do:</label>
     <input id='new-task' type = 'text' value={newTask} onChange={handleTaskInput}/>
     <input type='submit' value='Save-new-task'/>
+    </form>
     </div>
 
 
