@@ -1,24 +1,49 @@
-import logo from './logo.svg';
 import './App.css';
+import React, {useState} from 'react';
 
 function App() {
+
+  const[items, setItems] =useState([
+
+    {name: "Cleaning kitchen", isCompleted: true},
+    {name: "Watering plants", isCompleted: false},
+    {name: "Doing the dishes", isCompleted: true},
+
+  ]);
+
+  const[newTask, setNewTask] = useState('');
+  const handleTaskInput = (event) =>{
+    setNewTask(event.target.value);
+  }
+
+  const saveNewTask =(event) =>{
+    event.preventDefault()
+    const copyTasks = [...tasks];
+    copyTasks.push({name: newTask, isCompleted:false});
+    setTask(copyTasks);
+    setNewTask('');
+  };
+
+
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+
+    <h1>My Todo list</h1>
+    <hr></hr>
+
+    <ul>
+      {/* {taskNodes} */}
+    </ul>
+
+    <form onSubmit={saveNewTask}/>
+    <label htmlFor='new-task'>What else to do:</label>
+    <input id='new-task' type = 'text' value={newTask} onChange={handleTaskInput}/>
+    <input type='submit' value='Save new task'/>
     </div>
+
+
+
   );
 }
 
