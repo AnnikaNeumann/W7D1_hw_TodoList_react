@@ -3,12 +3,18 @@ import React, {useState} from 'react';
 
 function App() {
 
-  const[tasks, setTask] =useState([
+  const[tasks, setTask] = useState([
 
-    {name: "Cleaning kitchen", priorityLevel: true},
-    {name: "Watering plants", priorityLevel: false},
-    {name: "Doing the dishes", priorityLevel: false},
+    {name: "Cleaning kitchen", priority: "High"},
+    {name: "Watering plants", priority: "Low"},
+    {name: "Doing the dishes", priority: "High"},
 
+  ]);
+
+  const[priority, setPriority] = useState([
+    {priority: "High"},
+    {priority: "Low"},
+    {priority: "High"}
   ]);
 
   const[newTask, setNewTask] = useState('');
@@ -19,48 +25,44 @@ function App() {
   const saveNewTask =(event) =>{
     event.preventDefault();
     const copyTasks = [...tasks];
-    copyTasks.push({name: newTask, priority: false});
+    copyTasks.push({name: newTask, priority: priority});
     setTask(copyTasks);
-    setNewTask('')
+    // setNewTask('')
   }
 
-  const taskToDo = (index) =>{
-    const copyTasks =[...tasks];
-    copyTasks[index].priority = true;
-    setTask(copyTasks);
-  }
+  // const taskToDo = (index) =>{
+  //   const copyTasks =[...tasks];
+  //   copyTasks[index].priority = true;
+  //   setTask(copyTasks);
+  // }
 
   const taskNodes = tasks.map((task, index) =>{
+    console.log("priority", task.priority)
     return(
-    <li key={index} className={task.priority ? 'high' : 'low'}>
-    <span>{task.name}</span>
-    {task.priority ? <span className='low-priority'>High</span> : <span>Low</span>}
-
-    {/* <button onClick={ () => taskToDo(index)}>Todo</button>
-    todo button lets you click and change priority, but does not render different color */}
-
-    </li>
-   
+      // <div className="high-priority">
+        <li key={index} className={task.priority=="High" ? 'high-priority' : 'low-priority'}>
+        <span>{task.name}</span>
+        <span>{task.priority}</span>
+      
+        {/* <button onClick={ () => taskToDo(index)}>Todo</button>
+        todo button lets you click and change priority, but does not render different color */}
+        </li>  
+    // </div>
   )
-  })
+})
 
-  const[priority, setPriority] = useState('');
    
   return (
-    
+
   <div className="App">
-    
     
     <h1>Todo or not to do list</h1>
     <hr></hr>
-    
-
     
     <ul>
       {taskNodes}
     </ul>
   
-    
     <form onSubmit={saveNewTask}>
     <label htmlFor='new-task'></label>
     <input id='new-task' type = 'text' value={newTask} onChange={handleTaskInput}/>

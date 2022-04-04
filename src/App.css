@@ -12,13 +12,13 @@ li span{
   padding: 8px;
 }
 
-/* li.low-priority{
+li.low-priority{
   border: 2px solid green;
 }
 
 li.high-priority{
   border: 2px solid #f2360c;
-} */
+}
 
 li{
   border: 1px solid;
